@@ -1,0 +1,42 @@
+body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+.card { box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+
+/* Hero image and subtle animation */
+.hero-img { width: 220px; max-width: 45%; animation: float 6s ease-in-out infinite; }
+@keyframes float {
+	0% { transform: translateY(0px); }
+	50% { transform: translateY(-10px) rotate(-3deg); }
+	100% { transform: translateY(0px); }
+}
+
+/* Small animated accent */
+.pulse {
+	display: inline-block;
+	width: 12px; height: 12px; border-radius: 50%; background: #0d6efd; box-shadow: 0 0 0 rgba(13,110,253, 0.7);
+	animation: pulse 2s infinite;
+}
+@keyframes pulse {
+	0% { box-shadow: 0 0 0 0 rgba(13,110,253, 0.7); }
+	70% { box-shadow: 0 0 0 12px rgba(13,110,253, 0); }
+	100% { box-shadow: 0 0 0 0 rgba(13,110,253, 0); }
+}
+
+.muted-small { color: #6c757d; font-size: .9rem; }
+
+/* Job card hover */
+.job-card { transition: transform .18s ease, box-shadow .18s ease; }
+.job-card:hover { transform: translateY(-6px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+
+/* Card borders for findings */
+.card.border-start { border-left-width: 6px !important; }
+
+/* Truncate pre blocks elegantly */
+pre { max-height: 120px; overflow: auto; background: #f8f9fa; padding: 8px; border-radius: 4px; }
+
+/* Badges and chips */
+.chip { display:inline-block; padding: 6px 10px; background:#eef2ff; border-radius:999px; margin-right:6px; font-size:.85rem; }
+
+/* Responsive hero */
+@media (max-width: 767px) {
+	.hero-img { max-width: 60%; margin-bottom: 12px; }
+}

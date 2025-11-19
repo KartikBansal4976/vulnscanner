@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign in - VulnScanner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Sign in / Sign up</h4>
+              <p class="text-muted">For demo you can use the local sign-in below. To enable Clerk, set environment variables as described in README.</p>
+              <form method="post" action="/login">
+                <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input class="form-control" name="username" placeholder="your name" required>
+                </div>
+                <div class="d-grid">
+                  <button class="btn btn-primary">Sign in (demo)</button>
+                </div>
+              </form>
+              <hr />
+              <div class="mt-3">
+                <p>Or use Clerk (external provider):</p>
+                {% if clerk_enabled and clerk_publishable %}
+                <div id="clerk-signin"></div>
+                <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@4/dist/clerk.browser.js"></script>
+                <script>
+                  (async function(){
+                    try{
+                      const clerk = await Clerk.load({ publishableKey: '{{ clerk_publishable }}' });
+                      const el = document.getElementById('clerk-signin');
+                      // Clerk provides UI mounting helpers; use a basic sign-in mount if available
+                      if (clerk.mountSignIn) {
+                        clerk.mountSignIn(el);
+                      } else if (clerk.openSignIn) {
+                        const btn = document.createElement('button');
+                        btn.className = 'btn btn-outline-secondary';
+                        btn.textContent = 'Open Clerk Sign In';
+                        btn.onclick = () => clerk.openSignIn();
+                        el.appendChild(btn);
+                      }
+                      // listen for session creation and notify server
+                      clerk.on('session', async (session) => {
+                        if (!session) return;
+                        try {
+                          const resp = await fetch('/clerk_auth', {
+                            method: 'POST', headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ sessionId: session.id })
+                          });
+                          if (resp.ok) window.location = '/';
+                        } catch (e) { console.warn('clerk auth', e); }
+                      });
+                    } catch (e) { console.warn('Clerk widget load failed', e); }
+                  })();
+                </script>
+                {% else %}
+                <p class="text-muted">Clerk not enabled. To enable, set environment variables: <code>CLERK_ENABLED=1</code>, and provide a publishable key in <code>NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code> (client) and <code>CLERK_SECRET_KEY</code> (server). Do NOT commit secrets to the repository.</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
