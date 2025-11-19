@@ -2,10 +2,6 @@
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![Flask](https://img.shields.io/badge/Flask-2.3%2B-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![Status](https://img.shields.io/badge/Status-Active-success)
 
 **An educational web vulnerability scanner that automates security testing and generates professional reports**
 
