@@ -1,6 +1,6 @@
 # 🔒 VulnScanner - Automated Web Vulnerability Scanner
 
-<div align="center">
+<div align="left">
 
 **VulnScanner** is an educational web vulnerability scanner built with Python and Flask. It automates the process of discovering security weaknesses in web applications, performing comprehensive security audits, and generating detailed PDF reports.
 
