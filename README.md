@@ -2,30 +2,6 @@
 
 <div align="center">
 
-
-**An educational web vulnerability scanner that automates security testing and generates professional reports**
-
-[Features](#-features) • [How It Works](#-how-it-works) • [Installation](#-installation) • [Usage](#-usage) • [Technology Stack](#-technology-stack)
-
-</div>
-
----
-
-## 📋 Table of Contents
-- [About the Project](#-about-the-project)
-- [Why VulnScanner?](#-why-vulnscanner)
-- [How It Works](#-how-it-works)
-- [Key Features](#-features)
-- [Installation](#-installation)
-- [Usage Guide](#-usage-guide)
-- [Project Structure](#-project-structure)
-- [Technology Stack](#-technology-stack)
-- [Legal Disclaimer](#-legal-disclaimer)
-
----
-
-## 🎯 About the Project
-
 **VulnScanner** is an educational web vulnerability scanner built with Python and Flask. It automates the process of discovering security weaknesses in web applications, performing comprehensive security audits, and generating detailed PDF reports.
 
 ### What It Does
